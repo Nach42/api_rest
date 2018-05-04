@@ -1,0 +1,22 @@
+{
+  "name": "api_rest",
+  "version": "1.0.0",
+  "description": "Api Rest de usuarios",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ignacio Dones Tellez",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "jwt-simple": "^0.5.1",
+    "mongoose": "^5.0.17"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
