@@ -21,9 +21,25 @@ function getUser(req, res){
 	})
 }
 
+function signIn(req, res){
+	if(!req.headers.authorization){
+		return res.status(403).send({message:'No tienes acceso'})
+	}
+
+	const token = req.headers.authorization.split(":")
+	const email = token[0]
+	const pass = token[1]
+	User.findOne({email: email}, (err, user) => {
+		if(err) return res.status(500).send({message: 'Error al procesar la peticion'})
+		if(!user) return res.status(404).send({message: 'El usuario no existe'})
+		if(user.password != pass) return res.status(404).send({message: 'Contraseña incorrecta'})
+
+		res.status(200).send({user: user})
+	})
+}
+
 function postUser(req, res){
 	let user = new User()
-	user.username = req.body.username
 	user.email = req.body.email
 	user.password = req.body.password
 	user.name = req.body.name
@@ -63,6 +79,7 @@ function deleteUser(req, res){
 module.exports = {
 	getUsers,
 	getUser,
+	signIn,
 	postUser,
 	updateUser,
 	deleteUser
