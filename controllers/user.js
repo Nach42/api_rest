@@ -44,7 +44,7 @@ function postUser(req, res){
 	user.password = req.body.password
 	user.name = req.body.name
 	if (req.body.role == 'ADMIN') user.role = req.body.role
-
+	
 	user.save((err, userStored) => {
 		if(err) return res.status(500).send({message: `Error al registrar usuario, ${err}`})
 
